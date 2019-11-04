@@ -4,9 +4,9 @@
         <input
           placeholder='Enter a Word Here!'
           v-model='word'
-          @keyup.enter.prevent="findSynonyms(word)">
+          @keyup.enter.prevent="findWord(word)">
         <button
-          @click.prevent="findSynonyms(word)">
+          @click.prevent="findWord(word)">
           Search
         </button>
       </div>
@@ -25,11 +25,17 @@
 
 <script>
 export default {
-  name: 'form',
-  props: ['definition', 'partOfSpeech', 'mainWord', 'findSynonyms'],
+  name: 'synonym-form',
+  props: ['definition', 'partOfSpeech', 'mainWord'],
   data() {
     return {
       word: ''
+    }
+  },
+  methods: {
+    findWord(word) {
+      this.$emit('find-synonyms', word);
+      this.word = ''
     }
   }
 }
@@ -59,7 +65,7 @@ export default {
     color: #3030FF;
   }
   p {
-    margin: 10px 0px 0px 0px;
+    margin: 20px 10px 0px 0px;
   }
   #synonym-form {
     display: flex;

@@ -3,14 +3,14 @@
     <Header />
     <div id='lower-container'>
       <Form 
-        :findSynonyms='findSynonyms'
         :definition='this.definition'
         :partOfSpeech='this.partOfSpeech'
         :mainWord='this.mainWord'
+        @find-synonyms='findSynonyms'
         />
       <ListOutput 
         :synonyms='this.synonyms'
-        :findSynonyms='findSynonyms'
+        @find-synonyms='findSynonyms'
         />
     </div>
   </div>
@@ -37,8 +37,8 @@ export default {
     }
   },
   methods: {
-    findSynonyms: async function(word) {
-      const rawResponse = await getSynonyms(word);
+    findSynonyms: async function(e) {
+      const rawResponse = await getSynonyms(e);
       const mainWord = rawResponse.meta.id;
       const definition = rawResponse.shortdef[0];
       const partOfSpeech = rawResponse.fl;
