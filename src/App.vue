@@ -5,7 +5,9 @@
       <Form 
         :findSynonyms='findSynonyms'/>
       <ListOutput 
-        :synonyms='this.synonyms'/>
+        :synonyms='this.synonyms'
+        :findSynonyms='findSynonyms'
+        />
     </div>
   </div>
 </template>
