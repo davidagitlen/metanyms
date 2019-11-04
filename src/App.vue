@@ -2,8 +2,10 @@
   <div id='app'>
     <Header />
     <div id='lower-container'>
-      <Form />
-      <ListOutput />
+      <Form 
+        findSynonyms="findSynonyms"/>
+      <ListOutput 
+        synonyms="synonyms"/>
     </div>
   </div>
 </template>
@@ -12,13 +14,26 @@
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
 import ListOutput from './components/ListOutput/ListOutput';
+import { getSynonyms } from '../util/apiCalls';
 export default {
   name: 'app',
   components: {
     Header,
     Form,
     ListOutput
-  }
+  },
+  data() {
+    return {
+      synonyms: []
+    }
+  },
+  methods: {
+    findSynonyms: async function(word) {
+      const rawResponse = await getSynonyms(word);
+      const synonyms = rawResponse.syns;
+      this.synonyms = synonyms
+    }
+  },
 }
 </script>
 

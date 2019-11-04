@@ -5,7 +5,7 @@
         placeholder='Enter a Word Here!'
         @keyup.enter.prevent>
       <button
-        @click.prevent>
+        @click.prevent="findSynonyms">
         Search
       </button>
     </div>
