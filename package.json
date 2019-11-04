@@ -10,14 +10,17 @@
   },
   "dependencies": {
     "core-js": "^3.3.2",
+    "regenerator-runtime": "^0.13.3",
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.6.3",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "@vue/server-test-utils": "^1.0.0-beta.29",
     "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "eslint": "^5.16.0",
@@ -36,7 +39,10 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": 0,
+      "no-unused-vars": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

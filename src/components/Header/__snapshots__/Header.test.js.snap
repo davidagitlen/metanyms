@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<header
+  id="header"
+>
+  <h1>
+    {Metanyms}
+  </h1>
+   
+  <p>
+    Your One-Stop Synonym Shop!
+  </p>
+</header>
+`;
