@@ -3,9 +3,9 @@
     <Header />
     <div id='lower-container'>
       <Form 
-        findSynonyms="findSynonyms"/>
+        :findSynonyms='findSynonyms'/>
       <ListOutput 
-        synonyms="synonyms"/>
+        :synonyms='this.synonyms'/>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
   methods: {
     findSynonyms: async function(word) {
       const rawResponse = await getSynonyms(word);
-      const synonyms = rawResponse.syns;
+      const synonyms = rawResponse.syns[0];
       this.synonyms = synonyms
     }
   },
