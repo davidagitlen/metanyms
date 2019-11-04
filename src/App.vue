@@ -3,7 +3,11 @@
     <Header />
     <div id='lower-container'>
       <Form 
-        :findSynonyms='findSynonyms'/>
+        :findSynonyms='findSynonyms'
+        :definition='this.definition'
+        :partOfSpeech='this.partOfSpeech'
+        :mainWord='this.mainWord'
+        />
       <ListOutput 
         :synonyms='this.synonyms'
         :findSynonyms='findSynonyms'
@@ -26,14 +30,23 @@ export default {
   },
   data() {
     return {
-      synonyms: []
+      synonyms: [],
+      definition: '',
+      partOfSpeech: '',
+      mainWord: ''
     }
   },
   methods: {
     findSynonyms: async function(word) {
       const rawResponse = await getSynonyms(word);
-      const synonyms = rawResponse.syns[0];
-      this.synonyms = synonyms
+      const mainWord = rawResponse.meta.id;
+      const definition = rawResponse.shortdef[0];
+      const partOfSpeech = rawResponse.fl;
+      const synonyms = rawResponse.meta.syns[0];
+      this.synonyms = synonyms;
+      this.definition = definition;
+      this.partOfSpeech = partOfSpeech;
+      this.mainWord = mainWord;
     }
   },
 }

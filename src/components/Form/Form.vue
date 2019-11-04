@@ -1,24 +1,32 @@
 <template>
-  <form id='form'>
-    <div>
-      <input
-        placeholder='Enter a Word Here!'
-        v-model='word'
-        @keyup.enter.prevent="findSynonyms(word)">
-      <button
-        @click.prevent="findSynonyms(word)">
-        Search
-      </button>
-    </div>
-  </form>
+    <form id='synonym-form'>
+      <div>
+        <input
+          placeholder='Enter a Word Here!'
+          v-model='word'
+          @keyup.enter.prevent="findSynonyms(word)">
+        <button
+          @click.prevent="findSynonyms(word)">
+          Search
+        </button>
+      </div>
+      <div 
+        id='definition-display'
+        v-if='this.definition.length > 0'
+        >
+        <p>
+          <span id='main-word'>{{this.mainWord}}</span>:
+          ( <span id='part-of-speech'>{{this.partOfSpeech}}</span> )
+          <span id='definition'>{{this.definition}}</span>
+        </p>
+      </div>
+    </form>
 </template>
 
 <script>
 export default {
   name: 'form',
-  props: {
-    findSynonyms: { type: Function }
-  },
+  props: ['definition', 'partOfSpeech', 'mainWord', 'findSynonyms'],
   data() {
     return {
       word: ''
@@ -50,7 +58,10 @@ export default {
     background-color: #3DF4DF;
     color: #3030FF;
   }
-  #form {
+  p {
+    margin: 10px 0px 0px 0px;
+  }
+  #synonym-form {
     display: flex;
     flex-direction: column;
     min-height: 80vh;
@@ -58,5 +69,11 @@ export default {
     width: 30%;
     border-right: 1px solid gainsboro;
     margin: 35px 0px 0px 35px;
+  }
+  #main-word {
+    font-weight: bold;
+  }
+  #part-of-speech {
+    font-style: italic;
   }
 </style>
