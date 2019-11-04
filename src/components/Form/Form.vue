@@ -1,7 +1,6 @@
 <template>
   <form id='form'>
     <div>
-      {{word}}
       <input
         placeholder='Enter a Word Here!'
         v-model='word'
@@ -54,7 +53,8 @@ export default {
   #form {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    min-height: 80vh;
+    max-height: max-content;
     width: 30%;
     border-right: 1px solid gainsboro;
     margin: 35px 0px 0px 35px;

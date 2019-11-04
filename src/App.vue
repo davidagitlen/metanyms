@@ -46,7 +46,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #FCFCFC;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: max-content;
 }
 #lower-container {
   display: flex;
