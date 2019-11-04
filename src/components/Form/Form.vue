@@ -1,8 +1,10 @@
 <template>
   <form id='form'>
     <div>
+      {{word}}
       <input
         placeholder='Enter a Word Here!'
+        v-model='word'
         @keyup.enter.prevent>
       <button
         @click.prevent="findSynonyms">
@@ -11,6 +13,17 @@
     </div>
   </form>
 </template>
+
+<script>
+export default {
+  name: 'form',
+  data() {
+    return {
+      word: ''
+    }
+  }
+}
+</script>
 
 <style scoped>
   input {
