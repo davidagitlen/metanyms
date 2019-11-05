@@ -6,7 +6,10 @@
       <li 
       v-for='(synonym, index) in this.synonyms' 
       v-bind:key='index'
-      @click.prevent="findWord(synonym)">{{synonym}}
+      @click.prevent="findWord(synonym)"
+      @keyup.enter.prevent="findWord(synonym)"
+      tabindex='0'
+      >{{synonym}}
       </li>
     </ul>
   </div>
@@ -37,6 +40,11 @@ export default {
     color: #3030FF;
     font-style: italic; 
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  li:focus {
+    color: #3030FF;
+    font-style: italic; 
     transition: all 0.2s ease-in-out;
   }
   #synonym-list {

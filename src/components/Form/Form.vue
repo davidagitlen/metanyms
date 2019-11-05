@@ -4,20 +4,22 @@
         <input
           placeholder='Enter a Word Here!'
           v-model='word'
-          @keyup.enter.prevent="findWord(word)">
+          @keyup.enter.prevent="findWord(word)"
+          >
         <button
-          @click.prevent="findWord(word)">
+          @click.prevent="findWord(word)"
+          >
           Search
         </button>
       </div>
       <div 
         id='error-message'
-        v-if='this.error != undefined && this.error.length > 0'>
+        v-if='this.error !== undefined && this.error.length > 0'>
         <p>{{error}}</p>
       </div>
       <div 
         id='definition-display'
-        v-if='this.definition != undefined && this.definition.length > 0'
+        v-if='this.definition !== undefined && this.definition.length > 0'
         >
         <p>
           <span id='main-word'>{{this.mainWord}}</span>:
@@ -54,6 +56,9 @@ export default {
     border-radius: 3px;
     padding: 0px 0px 0px 10px;
   }
+  input:focus {
+    border: 2px solid #3DF4DF;
+  }
   button {
     height: 32px;
     width: 110px;
@@ -68,6 +73,9 @@ export default {
   button:hover {
     background-color: #3DF4DF;
     color: #3030FF;
+  }
+  button:focus {
+    border: 2px solid #3DF4DF;
   }
   p {
     margin: 20px 10px 0px 0px;
