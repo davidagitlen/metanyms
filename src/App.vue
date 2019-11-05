@@ -48,7 +48,9 @@ export default {
         const synonyms = rawResponse.meta.syns[0];
         this.handleResponse(mainWord, definition, partOfSpeech, synonyms);
       } catch ({ message }) {
+        if (message === 'Sorry, we couldn\'t find the word you were looking for! Please enter a new word.') {
         this.handleError(message);
+        }
       } 
     },
     handleResponse: function(mainWord, definition, partOfSpeech, synonyms) {
@@ -59,7 +61,6 @@ export default {
       this.error = '';
     },
     handleError: function(message) {
-      console.log(message)
       this.mainWord = '';
       this.definition = '';
       this.partOfSpeech = '';

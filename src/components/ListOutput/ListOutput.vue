@@ -10,7 +10,6 @@
       @keyup.enter.prevent="findWord(synonym)"
       tabindex='0'
       >{{synonym}}
-      
       </li>
     </ul>
   </div>
