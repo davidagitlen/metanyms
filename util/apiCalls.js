@@ -10,5 +10,5 @@ export const getSynonyms = async (word) => {
   console.log(response)
   const data = await response.json();
   console.log('data', data)
-  return data[0].meta;
+  return data[0];
 }
