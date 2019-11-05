@@ -59,6 +59,7 @@ export default {
       this.error = '';
     },
     handleError: function(message) {
+      console.log(message)
       this.mainWord = '';
       this.definition = '';
       this.partOfSpeech = '';
