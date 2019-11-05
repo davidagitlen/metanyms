@@ -7,6 +7,7 @@
         :partOfSpeech='this.partOfSpeech'
         :mainWord='this.mainWord'
         @find-synonyms='findSynonyms'
+        :error='this.error'
         />
       <ListOutput 
         :synonyms='this.synonyms'
@@ -33,21 +34,37 @@ export default {
       synonyms: [],
       definition: '',
       partOfSpeech: '',
-      mainWord: ''
+      mainWord: '',
+      error: '',
     }
   },
   methods: {
     findSynonyms: async function(e) {
-      const rawResponse = await getSynonyms(e);
-      const mainWord = rawResponse.meta.id;
-      const definition = rawResponse.shortdef[0];
-      const partOfSpeech = rawResponse.fl;
-      const synonyms = rawResponse.meta.syns[0];
-      this.synonyms = synonyms;
+      try { 
+        const rawResponse = await getSynonyms(e);
+        const mainWord = rawResponse.meta.id;
+        const definition = rawResponse.shortdef[0];
+        const partOfSpeech = rawResponse.fl;
+        const synonyms = rawResponse.meta.syns[0];
+        this.handleResponse(mainWord, definition, partOfSpeech, synonyms);
+      } catch ({ message }) {
+        this.handleError(message);
+      } 
+    },
+    handleResponse: function(mainWord, definition, partOfSpeech, synonyms) {
+      this.mainWord = mainWord;
       this.definition = definition;
       this.partOfSpeech = partOfSpeech;
-      this.mainWord = mainWord;
-    }
+      this.synonyms = synonyms;
+      this.error = '';
+    },
+    handleError: function(message) {
+      this.mainWord = '';
+      this.definition = '';
+      this.partOfSpeech = '';
+      this.synonyms = '';
+      this.error = message;
+    } 
   },
 }
 </script>

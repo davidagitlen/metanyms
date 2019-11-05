@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+<div
+  id="app"
+>
+  <header
+    id="header"
+  >
+    <h1>
+      {Metanyms}
+    </h1>
+     
+    <p>
+      Your One-Stop Synonym Shop!
+    </p>
+  </header>
+   
+  <div
+    id="lower-container"
+  >
+    <form
+      id="synonym-form"
+    >
+      <div>
+        <input
+          placeholder="Enter a Word Here!"
+        />
+         
+        <button>
+          
+      Search
+    
+        </button>
+      </div>
+       
+      <!---->
+       
+      <!---->
+    </form>
+     
+    <!---->
+  </div>
+</div>
+`;

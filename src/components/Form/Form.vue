@@ -11,8 +11,13 @@
         </button>
       </div>
       <div 
+        id='error-message'
+        v-if='this.error != undefined && this.error.length > 0'>
+        <p>{{error}}</p>
+      </div>
+      <div 
         id='definition-display'
-        v-if='this.definition.length > 0'
+        v-if='this.definition != undefined && this.definition.length > 0'
         >
         <p>
           <span id='main-word'>{{this.mainWord}}</span>:
@@ -26,7 +31,7 @@
 <script>
 export default {
   name: 'synonym-form',
-  props: ['definition', 'partOfSpeech', 'mainWord'],
+  props: ['definition', 'partOfSpeech', 'mainWord', 'error'],
   data() {
     return {
       word: ''
@@ -81,5 +86,8 @@ export default {
   }
   #part-of-speech {
     font-style: italic;
+  }
+  #error-message {
+    color: red;
   }
 </style>
