@@ -2,12 +2,9 @@
 
 exports[`Form renders correctly 1`] = `
 <form
-  id="form"
+  id="synonym-form"
 >
   <div>
-    
-    
-    
     <input
       placeholder="Enter a Word Here!"
     />
@@ -18,5 +15,9 @@ exports[`Form renders correctly 1`] = `
     
     </button>
   </div>
+   
+  <!---->
+   
+  <!---->
 </form>
 `;

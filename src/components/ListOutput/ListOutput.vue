@@ -1,7 +1,7 @@
 <template>
   <div 
     id='synonym-list' 
-    v-if='this.synonyms.length > 0'>
+    v-if='this.synonyms != undefined && this.synonyms.length > 0'>
     <ul>
       <li 
       v-for='(synonym, index) in this.synonyms' 
