@@ -62,6 +62,7 @@ export default {
       this.mainWord = '';
       this.definition = '';
       this.partOfSpeech = '';
+      this.synonyms = '';
       this.error = message;
     } 
   },
