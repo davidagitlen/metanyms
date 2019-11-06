@@ -6,8 +6,8 @@
       <li 
       v-for='(synonym, index) in this.synonyms' 
       v-bind:key='index'
-      @click.prevent="findWord(synonym)"
-      @keyup.enter.prevent="findWord(synonym)"
+      @click.prevent="findWord($event, synonym)"
+      @keyup.enter.prevent="findWord($event, synonym)"
       tabindex='0'
       >{{synonym}}
       </li>
@@ -20,9 +20,10 @@ export default {
   name: 'listoutput',
   props: ['synonyms'],
   methods: {
-    findWord(word) {
+    findWord(event, word) {
       this.$emit('find-synonyms', word);
       this.word = ''
+      event.target.blur();
     }
   }
 }
