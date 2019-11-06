@@ -48,12 +48,10 @@ export default {
         const partOfSpeech = rawResponse.fl;
         const synonyms = rawResponse.meta.syns[0];
         this.handleResponse(mainWord, definition, partOfSpeech, synonyms);
-        console.log(this.$refs)
         this.$refs.search.$el[0].focus();
       } catch ({ message }) {
         if (message === 'Sorry, we couldn\'t find the word you were looking for! Please enter a new word.') {
         this.handleError(message);
-        console.log(this.$refs)
         this.$refs.search.$el[0].focus();
         }
       } 
