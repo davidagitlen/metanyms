@@ -57,7 +57,7 @@ export default {
     padding: 0px 0px 0px 10px;
   }
   input:focus {
-    border: 2px solid #3DF4DF;
+    box-shadow: 0px 0px 10px #00E8CC, 0px 0px 10px #00E8CC;
   }
   button {
     height: 32px;
@@ -75,7 +75,7 @@ export default {
     color: #3030FF;
   }
   button:focus {
-    border: 2px solid #3DF4DF;
+   box-shadow: 0px 0px 10px #00E8CC, 0px 0px 10px #00E8CC;
   }
   p {
     margin: 20px 10px 0px 0px;

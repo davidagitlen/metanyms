@@ -39,14 +39,14 @@ export default {
   }
   li:hover {
     color: #3030FF;
-    font-style: italic; 
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    text-shadow: 0px 0px 10px #00FFE1, 0px 0px 10px #00FFE1;
   }
   li:focus {
     color: #3030FF;
-    font-style: italic; 
     transition: all 0.2s ease-in-out;
+    text-shadow: 0px 0px 10px #00FFE1, 0px 0px 10px #00FFE1;
   }
   #synonym-list {
     min-height: 80vh;
