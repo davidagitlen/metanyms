@@ -7,11 +7,12 @@
         :partsOfSpeech='this.partsOfSpeech'
         :mainWords='this.mainWords'
         @find-synonyms='findSynonyms'
+        @switch-synonyms='switchSynonyms'
         :error='this.error'
         ref='search'
         />
       <ListOutput 
-        :synonyms='this.synonyms'
+        :currentSynonyms='this.currentSynonyms'
         @find-synonyms='findSynonyms'
         />
     </div>
@@ -33,6 +34,7 @@ export default {
   data() {
     return {
       synonyms: [],
+      currentSynonyms: [],
       definitions: [],
       partsOfSpeech: [],
       mainWords: [],
@@ -62,15 +64,20 @@ export default {
       this.definitions = definitions;
       this.partsOfSpeech = partsOfSpeech;
       this.synonyms = synonyms;
+      this.currentSynonyms = synonyms[0];
       console.log(this.mainWords, this.definitions, this.partsOfSpeech, this.synonyms)
       this.error = '';
     },
     handleError: function(message) {
-      this.mainWord = [];
-      this.definition = [];
-      this.partOfSpeech = [];
+      this.mainWords = [];
+      this.definitions = [];
+      this.partsOfSpeech = [];
       this.synonyms = [];
+      this.currentSynonyms = [];
       this.error = message;
+    },
+    switchSynonyms: function(e) {
+      this.currentSynonyms = this.synonyms[e]
     } 
   },
 }

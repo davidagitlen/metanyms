@@ -1,15 +1,15 @@
 <template>
   <div 
     id='synonym-list' 
-    v-if='this.synonyms != undefined && this.synonyms.length > 0'>
+    v-if='this.currentSynonyms != undefined && this.currentSynonyms.length > 0'>
     <ul>
       <li 
-      v-for='(synonym, index) in this.synonyms' 
-      v-bind:key='index'
-      @click.prevent="findWord($event, synonym)"
-      @keyup.enter.prevent="findWord($event, synonym)"
+      v-for='(currentSynonym, index) in this.currentSynonyms' 
+      :key='index'
+      @click.prevent="findWord($event, currentSynonym)"
+      @keyup.enter.prevent="findWord($event, currentSynonym)"
       tabindex='0'
-      >{{synonym}}
+      >{{currentSynonym}}
       </li>
     </ul>
   </div>
@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'listoutput',
-  props: ['synonyms'],
+  props: ['currentSynonyms'],
   methods: {
     findWord(event, word) {
       this.$emit('find-synonyms', word);

@@ -17,23 +17,29 @@
         v-if='this.error !== undefined && this.error.length > 0'>
         <p>{{error}}</p>
       </div>
-      <div 
+      <template 
         id='definition-display'
-        v-if='this.definition !== undefined && this.definition.length > 0'
+        v-if='this.definitions !== undefined && this.definitions.length > 0'
         >
-        <p>
-          <span id='main-word'>{{this.mainWord}}</span>:
-          ( <span id='part-of-speech'>{{this.partOfSpeech}}</span> )
-          <span id='definition'>{{this.definition}}</span>
+        <p
+          v-for='(mainWord, index) in this.mainWords'
+          :key='index'
+          @click.prevent="switchSynonyms(index)"
+          @keyup.enter.prevent="switchSynonyms(index)"
+          tabindex='0'
+          >
+          <span id='main-word'>{{mainWord}}</span>:
+          ( <span id='part-of-speech'>{{partsOfSpeech[index]}}</span> )
+          <span id='definition'>{{definitions[index]}}</span>
         </p>
-      </div>
+      </template>
     </form>
 </template>
 
 <script>
 export default {
   name: 'synonym-form',
-  props: ['definition', 'partOfSpeech', 'mainWord', 'error'],
+  props: ['definitions', 'partsOfSpeech', 'mainWords', 'error'],
   data() {
     return {
       word: ''
@@ -43,6 +49,9 @@ export default {
     findWord(word) {
       this.$emit('find-synonyms', word);
       this.word = ''
+    },
+    switchSynonyms(index) {
+      this.$emit('switch-synonyms', index);
     }
   }
 }
@@ -57,14 +66,14 @@ export default {
     padding: 0px 0px 0px 10px;
   }
   input:focus {
-    box-shadow: 0px 0px 10px #00E8CC, 0px 0px 10px #00E8CC;
+    box-shadow: 0px 0px 10px #00FFE1, 0px 0px 10px #00FFE1;
   }
   button {
     height: 32px;
     width: 110px;
     border: none;
     border-radius: 20px;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 30px;
     background-color: #3030FF;
     transition: all 0.3s ease-in-out; 
     font-weight: bold;
@@ -75,10 +84,18 @@ export default {
     color: #3030FF;
   }
   button:focus {
-   box-shadow: 0px 0px 10px #00E8CC, 0px 0px 10px #00E8CC;
+    box-shadow: 0px 0px 10px #00FFE1, 0px 0px 10px#00FFE1;
   }
   p {
     margin: 20px 10px 0px 0px;
+  }
+  p:hover {
+    text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
+    color: #3030FF;
+  }
+  p:focus {
+    text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
+    color: #3030FF;
   }
   #synonym-form {
     display: flex;
