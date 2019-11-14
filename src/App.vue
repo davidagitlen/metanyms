@@ -3,9 +3,9 @@
     <Header />
     <div id='lower-container'>
       <Form 
-        :definition='this.definition'
-        :partOfSpeech='this.partOfSpeech'
-        :mainWord='this.mainWord'
+        :definitions='this.definitions'
+        :partsOfSpeech='this.partsOfSpeech'
+        :mainWords='this.mainWords'
         @find-synonyms='findSynonyms'
         :error='this.error'
         ref='search'
@@ -33,9 +33,9 @@ export default {
   data() {
     return {
       synonyms: [],
-      definition: '',
-      partOfSpeech: '',
-      mainWord: '',
+      definitions: [],
+      partsOfSpeech: [],
+      mainWords: [],
       error: '',
     }
   },
@@ -43,11 +43,12 @@ export default {
     findSynonyms: async function(e) {
       try { 
         const rawResponse = await getSynonyms(e);
-        const mainWord = rawResponse.meta.id;
-        const definition = rawResponse.shortdef[0];
-        const partOfSpeech = rawResponse.fl;
-        const synonyms = rawResponse.meta.syns[0];
-        this.handleResponse(mainWord, definition, partOfSpeech, synonyms);
+        console.log('rawResponse :', rawResponse)
+        const mainWords = rawResponse.map(entry => entry.meta.id);
+        const definitions = rawResponse.map(entry => entry.shortdef[0]);
+        const partsOfSpeech = rawResponse.map(entry => entry.fl);
+        const synonyms = rawResponse.map(entry => entry.meta.syns[0]);
+        this.handleResponse(mainWords, definitions, partsOfSpeech, synonyms);
         this.$refs.search.$el[0].focus();
       } catch ({ message }) {
         if (message === 'Sorry, we couldn\'t find the word you were looking for! Please enter a new word.') {
@@ -56,18 +57,19 @@ export default {
         }
       } 
     },
-    handleResponse: function(mainWord, definition, partOfSpeech, synonyms) {
-      this.mainWord = mainWord;
-      this.definition = definition;
-      this.partOfSpeech = partOfSpeech;
+    handleResponse: function(mainWords, definitions, partsOfSpeech, synonyms) {
+      this.mainWords = mainWords;
+      this.definitions = definitions;
+      this.partsOfSpeech = partsOfSpeech;
       this.synonyms = synonyms;
+      console.log(this.mainWords, this.definitions, this.partsOfSpeech, this.synonyms)
       this.error = '';
     },
     handleError: function(message) {
-      this.mainWord = '';
-      this.definition = '';
-      this.partOfSpeech = '';
-      this.synonyms = '';
+      this.mainWord = [];
+      this.definition = [];
+      this.partOfSpeech = [];
+      this.synonyms = [];
       this.error = message;
     } 
   },
