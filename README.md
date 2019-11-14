@@ -11,15 +11,6 @@ Metanyms is a small project, presented as a code challenge and built over the co
 * Node.js
 * Jest
 
-## Images 
-
-![main screen](https://i.imgur.com/RtF74vz.png)
-
-![error message](https://i.imgur.com/kmEOesz.png)
-
-## Wireframe
-![wireframe](https://i.imgur.com/sZPPWxt.jpg)
-
 ## Setup Instructions
 
 If you would like to run the app locally, follow these instructions to clone and start it: 
@@ -29,3 +20,12 @@ git clone https://github.com/davidagitlen/metanyms.git
 npm install
 npm run serve
 ```
+
+## Images 
+
+![Main screen](https://i.imgur.com/TFEW8TE.png)
+
+![Error message](https://i.imgur.com/ePcbfpS.png))
+
+## Wireframe
+![wireframe](https://i.imgur.com/sZPPWxt.jpg)
