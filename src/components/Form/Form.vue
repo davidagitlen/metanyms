@@ -22,6 +22,7 @@
         v-if='this.definitions !== undefined && this.definitions.length > 0'
         >
         <p
+          id='definition-entry'
           v-for='(mainWord, index) in this.mainWords'
           :key='index'
           @click.prevent="switchSynonyms(index)"
@@ -89,11 +90,11 @@ export default {
   p {
     margin: 20px 10px 0px 0px;
   }
-  p:hover {
+  #definition-entry:hover {
     text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
     color: #3030FF;
   }
-  p:focus {
+  #definition-entry:focus {
     text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
     color: #3030FF;
   }
