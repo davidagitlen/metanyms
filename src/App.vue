@@ -6,6 +6,7 @@
         :definitions='this.definitions'
         :partsOfSpeech='this.partsOfSpeech'
         :mainWords='this.mainWords'
+        :suggestions='this.suggestions'
         @find-synonyms='findSynonyms'
         @switch-synonyms='switchSynonyms'
         :error='this.error'
@@ -38,6 +39,7 @@ export default {
       definitions: [],
       partsOfSpeech: [],
       mainWords: [],
+      suggestions: [],
       error: '',
     }
   },
@@ -45,7 +47,10 @@ export default {
     findSynonyms: async function(e) {
       try { 
         const rawResponse = await getSynonyms(e);
-        console.log('rawResponse :', rawResponse)
+        console.log('rawResponse :', rawResponse);
+        if (this.rawResponse.every(response => typeof (response) === 'string')) {
+          this.handleSuggestions(rawResponse);
+        }
         const mainWords = rawResponse.map(entry => entry.meta.id);
         const definitions = rawResponse.map(entry => entry.shortdef[0]);
         const partsOfSpeech = rawResponse.map(entry => entry.fl);
@@ -53,7 +58,8 @@ export default {
         this.handleResponse(mainWords, definitions, partsOfSpeech, synonyms);
         this.$refs.search.$el[0].focus();
       } catch ({ message }) {
-        if (message === 'Sorry, we couldn\'t find the word you were looking for! Please enter a new word.') {
+        if (message === 'Sorry, we couldn\'t find the word you were looking for! Please enter a new word.' || 
+        message === 'Sorry, we couldn\'t find the word you were looking for! Did you mean: ') {
         this.handleError(message);
         this.$refs.search.$el[0].focus();
         }
@@ -65,7 +71,6 @@ export default {
       this.partsOfSpeech = partsOfSpeech;
       this.synonyms = synonyms;
       this.currentSynonyms = synonyms[0];
-      console.log(this.mainWords, this.definitions, this.partsOfSpeech, this.synonyms)
       this.error = '';
     },
     handleError: function(message) {
@@ -78,7 +83,10 @@ export default {
     },
     switchSynonyms: function(e) {
       this.currentSynonyms = this.synonyms[e]
-    } 
+    },
+    handleSuggestions: function(suggestions) {
+      this.suggestions = suggestions
+    }
   },
 }
 </script>
