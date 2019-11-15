@@ -34,21 +34,21 @@
           <span id='definition'>{{definitions[index]}}</span>
         </p>
       </template>
-      <!-- <template
-        id='suggestions-display'
-        v-if='this.suggestions !== undefined && this.suggestions.length > 0'
+      <template
+        id='suggestions'
+        v-if='this.suggestions !==undefined && this.suggestions.length > 0'
         >
-        <p 
+        <p
           id='suggestion'
           v-for='(suggestion, index) in this.suggestions'
-          :key='index'
+          :key='index + suggestion'
           @click.prevent='findWord(suggestion)'
           @keyup.enter.prevent='findWord(suggestion)'
           tabindex='0'
           >
-          {{suggestion}}
+          {{ suggestion }}
         </p>
-      </template> -->
+      </template>
     </form>
 </template>
 
