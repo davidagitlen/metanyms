@@ -105,14 +105,18 @@ export default {
   p {
     margin: 20px 10px 0px 0px;
   }
-  #definition-entry:hover {
-    text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
+  #definition-entry:hover,
+  #suggestion:hover {
     color: #3030FF;
   }
-  #definition-entry:focus {
-    text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
+  #definition-entry:focus,
+  #suggestion:hover  {
     color: #3030FF;
   }
+  #suggestion {
+    font-weight: bold;
+    margin: 20px 0px 0px 25px;
+  } 
   #synonym-form {
     display: flex;
     flex-direction: column;
