@@ -4,10 +4,10 @@
         <input
           placeholder='Enter a Word Here!'
           v-model='word'
-          @keyup.enter.prevent="findWord(word)"
+          @keyup.enter.prevent='findWord(word)'
           >
         <button
-          @click.prevent="findWord(word)"
+          @click.prevent='findWord(word)'
           >
           Search
         </button>
@@ -25,8 +25,8 @@
           id='definition-entry'
           v-for='(mainWord, index) in this.mainWords'
           :key='index'
-          @click.prevent="switchSynonyms(index)"
-          @keyup.enter.prevent="switchSynonyms(index)"
+          @click.prevent='switchSynonyms(index)'
+          @keyup.enter.prevent='switchSynonyms(index)'
           tabindex='0'
           >
           <span id='main-word'>{{mainWord}}</span>:
@@ -34,13 +34,28 @@
           <span id='definition'>{{definitions[index]}}</span>
         </p>
       </template>
+      <!-- <template
+        id='suggestions-display'
+        v-if='this.suggestions !== undefined && this.suggestions.length > 0'
+        >
+        <p 
+          id='suggestion'
+          v-for='(suggestion, index) in this.suggestions'
+          :key='index'
+          @click.prevent='findWord(suggestion)'
+          @keyup.enter.prevent='findWord(suggestion)'
+          tabindex='0'
+          >
+          {{suggestion}}
+        </p>
+      </template> -->
     </form>
 </template>
 
 <script>
 export default {
   name: 'synonym-form',
-  props: ['definitions', 'partsOfSpeech', 'mainWords', 'error'],
+  props: ['definitions', 'partsOfSpeech', 'mainWords', 'suggestions', 'error'],
   data() {
     return {
       word: ''
