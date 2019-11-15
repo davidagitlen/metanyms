@@ -4,10 +4,10 @@
         <input
           placeholder='Enter a Word Here!'
           v-model='word'
-          @keyup.enter.prevent="findWord(word)"
+          @keyup.enter.prevent='findWord(word)'
           >
         <button
-          @click.prevent="findWord(word)"
+          @click.prevent='findWord(word)'
           >
           Search
         </button>
@@ -25,13 +25,28 @@
           id='definition-entry'
           v-for='(mainWord, index) in this.mainWords'
           :key='index'
-          @click.prevent="switchSynonyms(index)"
-          @keyup.enter.prevent="switchSynonyms(index)"
+          @click.prevent='switchSynonyms(index)'
+          @keyup.enter.prevent='switchSynonyms(index)'
           tabindex='0'
           >
           <span id='main-word'>{{mainWord}}</span>:
           ( <span id='part-of-speech'>{{partsOfSpeech[index]}}</span> )
           <span id='definition'>{{definitions[index]}}</span>
+        </p>
+      </template>
+      <template
+        id='suggestions'
+        v-if='this.suggestions !==undefined && this.suggestions.length > 0'
+        >
+        <p
+          id='suggestion'
+          v-for='(suggestion, index) in this.suggestions'
+          :key='index + suggestion'
+          @click.prevent='findWord(suggestion)'
+          @keyup.enter.prevent='findWord(suggestion)'
+          tabindex='0'
+          >
+          {{ suggestion }}
         </p>
       </template>
     </form>
@@ -40,7 +55,7 @@
 <script>
 export default {
   name: 'synonym-form',
-  props: ['definitions', 'partsOfSpeech', 'mainWords', 'error'],
+  props: ['definitions', 'partsOfSpeech', 'mainWords', 'suggestions', 'error'],
   data() {
     return {
       word: ''
@@ -90,14 +105,18 @@ export default {
   p {
     margin: 20px 10px 0px 0px;
   }
-  #definition-entry:hover {
-    text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
+  #definition-entry:hover,
+  #suggestion:hover {
     color: #3030FF;
   }
-  #definition-entry:focus {
-    text-shadow: 0px 0px 7.5px #00FFE1, 0px 0px 7.5px #00FFE1;
+  #definition-entry:focus,
+  #suggestion:hover  {
     color: #3030FF;
   }
+  #suggestion {
+    font-weight: bold;
+    margin: 20px 0px 0px 25px;
+  } 
   #synonym-form {
     display: flex;
     flex-direction: column;

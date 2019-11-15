@@ -10,9 +10,8 @@ export const getSynonyms = async (word) => {
     throw new Error('Sorry, we couldn\'t find the word you were looking for! Please enter a new word.');
   }
   const data = await response.json();
-  if (!data.length || data.every(datum => typeof(datum) === 'string')) {
+  if (!data.length) {
     throw new Error('Sorry, we couldn\'t find the word you were looking for! Please enter a new word.')
   }
-  console.log(data)
   return data;
 }
