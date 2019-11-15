@@ -19,5 +19,7 @@ exports[`Form renders correctly 1`] = `
   <!---->
    
   <!---->
+   
+  <!---->
 </form>
 `;
