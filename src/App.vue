@@ -47,22 +47,20 @@ export default {
     findSynonyms: async function(e) {
       try { 
         const rawResponse = await getSynonyms(e);
-        console.log('rawResponse :', rawResponse);
         if (rawResponse.every(response => typeof (response) === 'string')) {
           this.handleSuggestions(rawResponse);
         } else {
-        const mainWords = rawResponse.map(entry => entry.meta.id);
-        const definitions = rawResponse.map(entry => entry.shortdef[0]);
-        const partsOfSpeech = rawResponse.map(entry => entry.fl);
-        const synonyms = rawResponse.map(entry => entry.meta.syns[0]);
-        this.handleResponse(mainWords, definitions, partsOfSpeech, synonyms);
-        this.$refs.search.$el[0].focus();
+          const mainWords = rawResponse.map(entry => entry.meta.id);
+          const definitions = rawResponse.map(entry => entry.shortdef[0]);
+          const partsOfSpeech = rawResponse.map(entry => entry.fl);
+          const synonyms = rawResponse.map(entry => entry.meta.syns[0]);
+          this.handleResponse(mainWords, definitions, partsOfSpeech, synonyms);
+          this.$refs.search.$el[0].focus();
         }
       } catch ({ message }) {
-        if (message === 'Sorry, we couldn\'t find the word you were looking for! Please enter a new word.' || 
-        message === 'Sorry, we couldn\'t find the word you were looking for! Did you mean: ') {
-        this.handleError(message);
-        this.$refs.search.$el[0].focus();
+        if (message === 'Sorry, we couldn\'t find the word you were looking for! Please enter a new word.') {
+          this.handleError(message);
+          this.$refs.search.$el[0].focus();
         }
       } 
     },
@@ -72,6 +70,7 @@ export default {
       this.partsOfSpeech = partsOfSpeech;
       this.synonyms = synonyms;
       this.currentSynonyms = synonyms[0];
+      this.suggestions = [];
       this.error = '';
     },
     handleError: function(message) {
@@ -80,6 +79,7 @@ export default {
       this.partsOfSpeech = [];
       this.synonyms = [];
       this.currentSynonyms = [];
+      this.suggestions = [];
       this.error = message;
     },
     switchSynonyms: function(e) {
@@ -91,6 +91,7 @@ export default {
       this.partsOfSpeech = [];
       this.synonyms = [];
       this.currentSynonyms = [];
+      this.error = 'Sorry, we couldn\'t find the word you were looking for! Did you mean: ';
       this.suggestions = suggestions
     }
   },
